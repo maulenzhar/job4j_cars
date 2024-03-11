@@ -133,7 +133,7 @@ public class UserRepository {
             session = sf.openSession();
             session.beginTransaction();
             Query query =  session.createQuery("from User as u where u.login like :fKey");
-            query.setParameter("fKey", key);
+            query.setParameter("fKey", "%" + key + "%");
             session.getTransaction().commit();
             return query.list();
         } catch (Exception e) {
