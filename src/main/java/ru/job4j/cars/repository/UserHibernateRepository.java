@@ -19,8 +19,8 @@ public class UserHibernateRepository {
      * Сохранить в базе.
      * @param user пользователь.
      * @return пользователь с id.
-     *//*
-
+     */
+/*
     public User create(User user) {
         Session session = null;
         try {
@@ -40,8 +40,8 @@ public class UserHibernateRepository {
 /**
      * Обновить в базе пользователя.
      * @param user пользователь.
-     *//*
-
+     */
+/*
     public void update(User user) {
         Session session = null;
         try {
@@ -65,8 +65,8 @@ public class UserHibernateRepository {
 /**
      * Удалить пользователя по id.
      * @param userId ID
-     *//*
-
+     */
+/*
     public void delete(int userId) {
         Session session = null;
         try {
@@ -88,8 +88,8 @@ public class UserHibernateRepository {
 /**
      * Список пользователь отсортированных по id.
      * @return список пользователей.
-     *//*
-
+     */
+/*
     public List<User> findAllOrderById() {
         Session session = null;
         try {
@@ -110,8 +110,8 @@ public class UserHibernateRepository {
 /**
      * Найти пользователя по ID
      * @return пользователь.
-     *//*
-
+     */
+/*
     public Optional<User> findById(int userId) {
         Session session = null;
         try {
@@ -136,8 +136,8 @@ public class UserHibernateRepository {
      * Список пользователей по login LIKE %key%
      * @param key key
      * @return список пользователей.
-     *//*
-
+     */
+/*
     public List<User> findByLikeLogin(String key) {
         Session session = null;
         try {
@@ -160,8 +160,8 @@ public class UserHibernateRepository {
      * Найти пользователя по login.
      * @param login login.
      * @return Optional or user.
-     *//*
-
+     */
+/*
     public Optional<User> findByLogin(String login) {
         Session session = null;
         try {
