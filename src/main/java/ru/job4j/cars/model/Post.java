@@ -18,12 +18,17 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Include
     private int id;
+
     private String description;
     private LocalDateTime created;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "auto_post_id")
     private List<PriceHistory> histories = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id")
+    private List<Car> messengers = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
