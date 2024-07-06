@@ -43,17 +43,6 @@ create table auto_post
     car_id       int references car (id)
 );
 
-create table auto_post
-(
-    id           serial primary key,
-    description  varchar not null,
-    created      TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),
-    auto_user_id int references auto_user (id),
-    car_id       int references car (id)
-);
-created_at
-TIMESTAMP WITH TIME ZONE NOT NULL,
-
 create table history
 (
     id      serial primary key,
