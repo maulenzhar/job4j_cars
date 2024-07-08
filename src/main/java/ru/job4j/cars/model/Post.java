@@ -28,7 +28,7 @@ public class Post {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id")
-    private List<Car> messengers = new ArrayList<>();
+    private List<Car> cars = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
