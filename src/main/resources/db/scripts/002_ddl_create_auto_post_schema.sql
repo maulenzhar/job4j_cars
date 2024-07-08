@@ -22,24 +22,9 @@ create table history
 (
     id      serial primary key,
     start_at TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),
-    end_at   TIMESTAMP WITHOUT TIME ZONE DEFAULT now()
-);
-
-create table history_owner
-(
-    id       serial primary key,
+    end_at   TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),
     owner_id int not null references owner (id),
-    car_id   int not null references car (id),
-    history_id int not null references history (id),
-    UNIQUE (owner_id, car_id)
-);
-
-create table car_owner
-(
-    id       BIGSERIAL PRIMARY KEY,
-    car_id   int not null references car (id),
-    owner_id int not null references owner (id),
-    UNIQUE (car_id, owner_id)
+    car_id   int not null references car (id)
 );
 
 create table auto_post
