@@ -58,9 +58,9 @@ public class PostRepository {
      * @return пост.
      */
     public List<Post> findByLastDay() {
-        return crudRepository.query("from Post " +
-                "where created_at >= now() - interval 1 day " +
-                "order by id desc", Post.class);
+        return crudRepository.query("from Post "
+                + "where created_at >= now() - interval 1 day "
+                + "order by id desc", Post.class);
     }
 
     /**
