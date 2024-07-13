@@ -2,11 +2,12 @@ package ru.job4j.cars.repository;
 
 import lombok.AllArgsConstructor;
 import ru.job4j.cars.model.Post;
-import ru.job4j.cars.model.User;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class PostRepository {
@@ -57,22 +58,23 @@ public class PostRepository {
      * Показать объявления за последний день
      * @return пост.
      */
-    public List<Post> findByLastDay() {
+    public List<Post> findByLastDay(OffsetDateTime date) {
         return crudRepository.query("from Post "
-                + "where created_at >= now() - interval 1 day "
-                + "order by id desc", Post.class);
+                + "where created_at >= :date "
+                + "order by id desc", Post.class,
+                Map.of("date", date));
     }
 
     /**
      * Показать объявления с фото
      * @return пост.
      */
-    public List<Post> findWithPhoto(int photoId) {
+    public List<Post> findWithPhoto() {
         return crudRepository.query(
-                "from Post p join p.photos ph where ph.id = :photoId",
-                Post.class,
-                Map.of("photoId", photoId)
-        );
+                "from Post p join p.photos ph",
+                Post.class).stream()
+                .filter(post -> post.getPhotos() != null && !post.getPhotos().isEmpty())
+                .collect(Collectors.toList());
     }
 
     /**

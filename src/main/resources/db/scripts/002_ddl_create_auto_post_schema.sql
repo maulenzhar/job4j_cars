@@ -27,20 +27,22 @@ create table history
     car_id   int not null references car (id)
 );
 
+create table photo
+(
+    id           serial primary key,
+    name  varchar not null,
+    path      varchar not null
+);
+
 create table auto_post
 (
     id           serial primary key,
     description  varchar not null,
     created      TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),
     auto_user_id int references auto_user (id),
-    car_id       int references car (id)
+    car_id       int references car (id),
+    photo_id     int references photo (id)
 );
 
-create table photo
-(
-    id           serial primary key,
-    name  varchar not null,
-    path      varchar not null,
-    post_id       int references auto_post (id)
-);
+
 
