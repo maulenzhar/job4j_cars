@@ -71,10 +71,8 @@ public class PostRepository {
      */
     public List<Post> findWithPhoto() {
         return crudRepository.query(
-                "from Post p join p.photos ph",
-                Post.class).stream()
-                .filter(post -> post.getPhotos() != null && !post.getPhotos().isEmpty())
-                .collect(Collectors.toList());
+                "from Post p where size(p.photos) > 0 order by p.id",
+                Post.class);
     }
 
     /**
