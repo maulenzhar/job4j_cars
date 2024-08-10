@@ -22,9 +22,9 @@ public class Post {
     private String description;
     private OffsetDateTime createdAt;
 
-    @OneToMany(cascade = CascadeType.ALL)
+   /* @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "auto_post_id")
-    private List<PriceHistory> histories = new ArrayList<>();
+    private List<PriceHistory> histories = new ArrayList<>();*/
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id")
