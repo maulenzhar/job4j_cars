@@ -27,8 +27,6 @@ class CarRepositoryTest {
         sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         carRepository = new CarRepository(new CrudRepository(sf));
         engineRepository = new EngineRepository(new CrudRepository(sf));
-
-
     }
 
     @Test
