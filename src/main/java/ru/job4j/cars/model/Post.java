@@ -30,9 +30,9 @@ public class Post {
     @JoinColumn(name = "car_id")
     private List<Car> cars = new ArrayList<>();
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "photo_id")
-//    private List<Photo> photos = new ArrayList<>();
+    /*@OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "photo_id")
+    private List<Photo> photos = new ArrayList<>();*/
 
     @ManyToMany
     @JoinTable(
