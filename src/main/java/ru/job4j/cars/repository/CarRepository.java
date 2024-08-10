@@ -3,6 +3,7 @@ package ru.job4j.cars.repository;
 import lombok.AllArgsConstructor;
 import ru.job4j.cars.model.Car;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public class CarRepository {
      * @return машина с id.
      */
     public Car create(Car car) {
-        crudRepository.run(session -> session.persist(car));
+        crudRepository.run(session -> session.merge(car));
         return car;
     }
 
@@ -49,5 +50,12 @@ public class CarRepository {
                 "from Car where id = :fId", Car.class,
                 Map.of("fId", carId)
         );
+    }
+
+    /**
+     * Найти все
+     */
+    public List<Car> findAll() {
+        return crudRepository.query("from Car order by id asc", Car.class);
     }
 }
