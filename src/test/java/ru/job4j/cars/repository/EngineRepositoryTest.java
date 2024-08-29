@@ -43,7 +43,8 @@ class EngineRepositoryTest {
         Engine engine = new Engine(0, "V8");
 
         Engine savedEngine = engineRepository.create(engine);
-        assertThat(savedEngine.getId()).isNotNull();
+        List<Engine> engineList = engineRepository.findAll();
+        assertThat(engineList.get(0)).isNotNull();
         Car car = new Car(0, "BMW", savedEngine);
         Car createdCar = carRepository.create(car);
 

@@ -41,8 +41,9 @@ class CarRepositoryTest {
 
     @Test
     void create() {
-        Engine engine = engineRepository.create(new Engine(0, "V8"));
-        Car car = new Car(0, "BMW", engine);
+        engineRepository.create(new Engine(0, "V8"));
+        List<Engine> engine = engineRepository.findAll();
+        Car car = new Car(0, "BMW", engine.get(0));
         Car created = carRepository.create(car);
         assertThat(created).isEqualTo(Optional.of(car).get());
     }
@@ -53,7 +54,7 @@ class CarRepositoryTest {
         assertThat(carRepository.findById(c.get(0).getId()).get()).isEqualTo(c.get(0));
     }
 
-    /*@Test
+    @Test
     void delete() {
         List<Engine> engines = engineRepository.findAll();
         if (!engines.isEmpty()) {
@@ -61,5 +62,5 @@ class CarRepositoryTest {
             Optional<Engine> e = engineRepository.findById(engines.get(0).getId());
             assertThat(e).isEmpty();
         }
-    }*/
+    }
 }
