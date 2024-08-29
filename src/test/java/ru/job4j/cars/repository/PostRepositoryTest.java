@@ -71,7 +71,7 @@ class PostRepositoryTest {
        /* Server.main();*/
         engineRepository.create(new Engine(0, "V8"));
         List<Engine> engine = engineRepository.findAll();
-        Car car = carRepository.create(new Car(1, "BMW", engine.get(0)));
+        Car car = carRepository.create(new Car(0, "BMW", engine.get(0)));
         User user = userRepository.create(new User(0, "test", "test"));
         Post post = new Post(0, "test", OffsetDateTime.now(),
                 List.of(new PriceHistory(0, new BigDecimal("123.45"), new BigDecimal("222.45"), LocalDateTime.now())),

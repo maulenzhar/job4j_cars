@@ -34,8 +34,8 @@ class OwnerRepositoryTest {
 
     @Test
     void create() {
-        User user = new User(1, "test", "test");
-        Owner owner = new Owner(1, "Test", user);
+        User user = new User(0, "test", "test");
+        Owner owner = new Owner(0, "Test", user);
         Owner result = ownerRepository.create(owner);
         assertThat(owner).isEqualTo(Optional.of(result).get());
     }

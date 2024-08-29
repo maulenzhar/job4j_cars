@@ -32,7 +32,7 @@ class PhotoRepositoryTest {
 
     @Test
     void create() {
-        Photo photo = new Photo(1, "Test", "test");
+        Photo photo = new Photo(0, "Test", "test");
         Photo result = photoRepository.create(photo);
         assertThat(photo).isEqualTo(Optional.of(result).get());
     }
