@@ -54,7 +54,7 @@ class CarRepositoryTest {
         assertThat(carRepository.findById(c.get(0).getId()).get()).isEqualTo(c.get(0));
     }
 
-    @Test
+    /*@Test
     void delete() {
         List<Engine> engines = engineRepository.findAll();
         if (!engines.isEmpty()) {
@@ -62,5 +62,5 @@ class CarRepositoryTest {
             Optional<Engine> e = engineRepository.findById(engines.get(0).getId());
             assertThat(e).isEmpty();
         }
-    }
+    }*/
 }

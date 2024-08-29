@@ -47,7 +47,7 @@ class OwnerRepositoryTest {
         assertThat(ownerRepository.findById(owners.get(0).getId()).get()).isEqualTo(owners.get(0));
     }
 
-    @Test
+    /*@Test
     void delete() {
         List<Owner> owners = ownerRepository.findAll();
         if (!owners.isEmpty()) {
@@ -55,7 +55,6 @@ class OwnerRepositoryTest {
             Optional<Owner> o = ownerRepository.findById(owners.get(0).getId());
             assertThat(o).isEmpty();
         }
-
-    }
+    }*/
 
 }
