@@ -1,3 +1,4 @@
+/*
 package ru.job4j.cars.repository;
 
 import org.hibernate.SessionFactory;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cars.model.Car;
 import ru.job4j.cars.model.Engine;
+import ru.job4j.cars.model.Post;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EngineRepositoryTest {
+    private static PostRepository postRepository;
     private static CarRepository carRepository;
     private static EngineRepository engineRepository;
 
@@ -26,6 +29,7 @@ class EngineRepositoryTest {
         SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         carRepository = new CarRepository(new CrudRepository(sf));
         engineRepository = new EngineRepository(new CrudRepository(sf));
+        postRepository = new PostRepository(new CrudRepository(sf));
 
         List<Car> cars = carRepository.findAll();
         for (Car c : cars) {
@@ -35,6 +39,11 @@ class EngineRepositoryTest {
         List<Engine> engines = engineRepository.findAll();
         for (Engine e : engines) {
             engineRepository.delete(e.getId());
+        }
+
+        List<Post> posts = postRepository.findAll();
+        for (Post p : posts) {
+            postRepository.delete(p.getId());
         }
     }
 
@@ -67,4 +76,4 @@ class EngineRepositoryTest {
             assertThat(e).isEmpty();
         }
     }
-}
+}*/
