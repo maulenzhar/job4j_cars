@@ -24,10 +24,10 @@ class PhotoRepositoryTest {
         SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         photoRepository = new PhotoRepository(new CrudRepository(sf));
 
-        List<Photo> photos = photoRepository.findAll();
+      /*  List<Photo> photos = photoRepository.findAll();
         for (Photo p : photos) {
             photoRepository.delete(p.getId());
-        }
+        }*/
     }
 
     @Test

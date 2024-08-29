@@ -39,7 +39,7 @@ class PostRepositoryTest {
         userRepository = new UserRepository(new CrudRepository(sf));
         ownerRepository = new OwnerRepository(new CrudRepository(sf));
 
-        List<Post> posts = postRepository.findAll();
+        /*List<Post> posts = postRepository.findAll();
         for (Post p : posts) {
             postRepository.delete(p.getId());
         }
@@ -63,7 +63,7 @@ class PostRepositoryTest {
         List<Photo> photos = photoRepository.findAll();
         for (Photo  p : photos) {
             photoRepository.delete(p.getId());
-        }
+        }*/
     }
 
     @Test
