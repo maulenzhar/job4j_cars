@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import ru.job4j.cars.model.Car;
 import ru.job4j.cars.model.Engine;
 import ru.job4j.cars.model.Post;
+import ru.job4j.cars.model.PriceHistory;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class CarRepositoryTest {
     private static PostRepository postRepository;
+    private static PriceHistoryRepository priceHistoryRepository;
     private static CarRepository carRepository;
     private static EngineRepository engineRepository;
     private static SessionFactory sf;
@@ -30,6 +32,7 @@ class CarRepositoryTest {
         carRepository = new CarRepository(new CrudRepository(sf));
         engineRepository = new EngineRepository(new CrudRepository(sf));
         postRepository = new PostRepository(new CrudRepository(sf));
+        priceHistoryRepository = new PriceHistoryRepository(new CrudRepository(sf));
     }
 
     @Test
@@ -76,6 +79,11 @@ class CarRepositoryTest {
         List<Car> cars = carRepository.findAll();
         for (Car c : cars) {
             carRepository.delete(c.getId());
+        }
+
+        List<PriceHistory> priceHistories = priceHistoryRepository.findAll();
+        for (PriceHistory p : priceHistories) {
+            priceHistoryRepository.delete(p.getId());
         }
 
         List<Engine> engines = engineRepository.findAll();
