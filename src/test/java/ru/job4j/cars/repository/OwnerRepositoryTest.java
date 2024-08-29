@@ -18,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class OwnerRepositoryTest {
     private static OwnerRepository ownerRepository;
+    private Owner result = null;
 
     @BeforeAll
     public static void initRepository() {
@@ -26,17 +27,17 @@ class OwnerRepositoryTest {
         SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         ownerRepository = new OwnerRepository(new CrudRepository(sf));
 
-        List<Owner> owners = ownerRepository.findAll();
+        /*List<Owner> owners = ownerRepository.findAll();
         for (Owner o : owners) {
             ownerRepository.delete(o.getId());
-        }
+        }*/
     }
 
     @Test
     void create() {
         User user = new User(0, "test", "test");
         Owner owner = new Owner(0, "Test", user);
-        Owner result = ownerRepository.create(owner);
+        result = ownerRepository.create(owner);
         assertThat(owner).isEqualTo(Optional.of(result).get());
     }
 
