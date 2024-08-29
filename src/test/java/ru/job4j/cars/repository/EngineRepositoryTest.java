@@ -1,4 +1,3 @@
-/*
 package ru.job4j.cars.repository;
 
 import org.hibernate.SessionFactory;
@@ -7,9 +6,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import ru.job4j.cars.model.Car;
-import ru.job4j.cars.model.Engine;
-import ru.job4j.cars.model.Post;
+import ru.job4j.cars.model.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +18,8 @@ class EngineRepositoryTest {
     private static PostRepository postRepository;
     private static CarRepository carRepository;
     private static EngineRepository engineRepository;
+    private static PhotoRepository photoRepository;
+    private static PriceHistoryRepository priceHistoryRepository;
 
     @BeforeAll
     public static void initRepository() {
@@ -30,6 +29,23 @@ class EngineRepositoryTest {
         carRepository = new CarRepository(new CrudRepository(sf));
         engineRepository = new EngineRepository(new CrudRepository(sf));
         postRepository = new PostRepository(new CrudRepository(sf));
+        photoRepository = new PhotoRepository(new CrudRepository(sf));
+        priceHistoryRepository = new PriceHistoryRepository(new CrudRepository(sf));
+
+        List<PriceHistory> priceHistories = priceHistoryRepository.findAll();
+        for (PriceHistory p : priceHistories) {
+            priceHistoryRepository.delete(p.getId());
+        }
+
+        List<Photo> photos = photoRepository.findAll();
+        for (Photo p : photos) {
+            photoRepository.delete(p.getId());
+        }
+
+        List<Post> posts = postRepository.findAll();
+        for (Post p : posts) {
+            postRepository.delete(p.getId());
+        }
 
         List<Car> cars = carRepository.findAll();
         for (Car c : cars) {
@@ -40,35 +56,24 @@ class EngineRepositoryTest {
         for (Engine e : engines) {
             engineRepository.delete(e.getId());
         }
-
-        List<Post> posts = postRepository.findAll();
-        for (Post p : posts) {
-            postRepository.delete(p.getId());
-        }
     }
 
     @Test
     void create() {
-        Engine engine = new Engine(0, "V8");
-
-        Engine savedEngine = engineRepository.create(engine);
-        List<Engine> engineList = engineRepository.findAll();
-        assertThat(engineList.get(0)).isNotNull();
-        Car car = new Car(0, "BMW", savedEngine);
-        Car createdCar = carRepository.create(car);
-
-        assertThat(createdCar).isNotNull();
-        assertThat(createdCar.getEngine().getId()).isEqualTo(savedEngine.getId());
+        Engine savedEngine = engineRepository.create(new Engine(1, "V8"));
+        assertThat(savedEngine.getName()).isEqualTo("V8");
     }
 
     @Test
     void findById() {
+        Engine savedEngine = engineRepository.create(new Engine(1, "V8"));
         List<Engine> engines = engineRepository.findAll();
         assertThat(engineRepository.findById(engines.get(0).getId()).get()).isEqualTo(engines.get(0));
     }
 
     @Test
     void delete() {
+        Engine savedEngine = engineRepository.create(new Engine(1, "V8"));
         List<Engine> engines = engineRepository.findAll();
         if (!engines.isEmpty()) {
             engineRepository.delete(engines.get(0).getId());
@@ -76,4 +81,4 @@ class EngineRepositoryTest {
             assertThat(e).isEmpty();
         }
     }
-}*/
+}

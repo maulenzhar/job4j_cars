@@ -16,23 +16,21 @@ import static org.assertj.core.api.Assertions.*;
 
 class CarRepositoryTest {
     private static PostRepository postRepository;
+    private static PhotoRepository photoRepository;
     private static PriceHistoryRepository priceHistoryRepository;
     private static CarRepository carRepository;
     private static EngineRepository engineRepository;
-    private static PhotoRepository photoRepository;
-    private static SessionFactory sf;
 
     @BeforeAll
     public static void initRepository() {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
-        sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+        SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         carRepository = new CarRepository(new CrudRepository(sf));
         engineRepository = new EngineRepository(new CrudRepository(sf));
         postRepository = new PostRepository(new CrudRepository(sf));
         priceHistoryRepository = new PriceHistoryRepository(new CrudRepository(sf));
         photoRepository = new PhotoRepository(new CrudRepository(sf));
-
     }
 
     @Test
