@@ -48,7 +48,7 @@ class EngineRepositoryTest {
         Car createdCar = carRepository.create(car);
 
         assertThat(createdCar).isNotNull();
-        assertThat(createdCar.getEngine().getId()).isEqualTo(savedEngine.getId()); // Проверяем, что engine_id совпадает
+        assertThat(createdCar.getEngine().getId()).isEqualTo(savedEngine.getId());
     }
 
     @Test
