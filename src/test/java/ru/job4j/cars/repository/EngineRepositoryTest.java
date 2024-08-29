@@ -27,7 +27,7 @@ class EngineRepositoryTest {
         carRepository = new CarRepository(new CrudRepository(sf));
         engineRepository = new EngineRepository(new CrudRepository(sf));
 
-        List<Car> cars = carRepository.findAll();
+        /*List<Car> cars = carRepository.findAll();
         for (Car c : cars) {
             carRepository.delete(c.getId());
         }
@@ -35,14 +35,20 @@ class EngineRepositoryTest {
         List<Engine> engines = engineRepository.findAll();
         for (Engine e : engines) {
             engineRepository.delete(e.getId());
-        }
+        }*/
     }
 
     @Test
     void create() {
         Engine engine = new Engine(0, "V8");
-        Engine result = engineRepository.create(engine);
-        assertThat(engine).isEqualTo(Optional.of(result).get());
+
+        Engine savedEngine = engineRepository.create(engine);
+        assertThat(savedEngine.getId()).isNotNull();
+        Car car = new Car(0, "BMW", savedEngine);
+        Car createdCar = carRepository.create(car);
+
+        assertThat(createdCar).isNotNull();
+        assertThat(createdCar.getEngine().getId()).isEqualTo(savedEngine.getId()); // Проверяем, что engine_id совпадает
     }
 
     @Test
