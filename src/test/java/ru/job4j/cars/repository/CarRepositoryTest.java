@@ -68,7 +68,6 @@ class CarRepositoryTest {
         assertThat(carRepository.findById(c.get(0).getId()).get()).isEqualTo(c.get(0));
     }
 
-
     private static void deleteAll() {
         List<Car> cars = carRepository.findAll();
         for (Car c : cars) {

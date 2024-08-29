@@ -1,4 +1,3 @@
-/*
 package ru.job4j.cars.repository;
 
 import org.hibernate.SessionFactory;
@@ -68,4 +67,4 @@ class EngineRepositoryTest {
             assertThat(e).isEmpty();
         }
     }
-}*/
+}
