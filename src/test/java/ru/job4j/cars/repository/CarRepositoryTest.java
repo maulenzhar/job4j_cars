@@ -7,10 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.Test;
-import ru.job4j.cars.model.Car;
-import ru.job4j.cars.model.Engine;
-import ru.job4j.cars.model.Post;
-import ru.job4j.cars.model.PriceHistory;
+import ru.job4j.cars.model.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +19,7 @@ class CarRepositoryTest {
     private static PriceHistoryRepository priceHistoryRepository;
     private static CarRepository carRepository;
     private static EngineRepository engineRepository;
+    private static PhotoRepository photoRepository;
     private static SessionFactory sf;
 
     @BeforeAll
@@ -33,6 +31,8 @@ class CarRepositoryTest {
         engineRepository = new EngineRepository(new CrudRepository(sf));
         postRepository = new PostRepository(new CrudRepository(sf));
         priceHistoryRepository = new PriceHistoryRepository(new CrudRepository(sf));
+        photoRepository = new PhotoRepository(new CrudRepository(sf));
+
     }
 
     @Test
@@ -74,6 +74,11 @@ class CarRepositoryTest {
         List<PriceHistory> priceHistories = priceHistoryRepository.findAll();
         for (PriceHistory p : priceHistories) {
             priceHistoryRepository.delete(p.getId());
+        }
+
+        List<Photo> photos = photoRepository.findAll();
+        for (Photo p : photos) {
+            photoRepository.delete(p.getId());
         }
 
         List<Post> posts = postRepository.findAll();
