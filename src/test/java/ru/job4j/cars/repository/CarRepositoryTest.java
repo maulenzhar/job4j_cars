@@ -62,13 +62,17 @@ class CarRepositoryTest {
 
         engineRepository.create(new Engine(0, "V8"));
         List<Engine> engine = engineRepository.findAll();
-        Car car = new Car(0, "BMW", engine.get(0));
-        carRepository.create(car);
-        List<Car> c = carRepository.findAll();
-        assertThat(carRepository.findById(c.get(0).getId()).get()).isEqualTo(c.get(0));
+        Car car = carRepository.create(new Car(0, "BMW", engine.get(0)));
+        Optional<Car> c = carRepository.findById(car.getId());
+        assertThat(c.get().getName()).isEqualTo("BMW");
     }
 
     private static void deleteAll() {
+        List<Post> posts = postRepository.findAll();
+        for (Post p : posts) {
+            postRepository.delete(p.getId());
+        }
+
         List<Car> cars = carRepository.findAll();
         for (Car c : cars) {
             carRepository.delete(c.getId());
@@ -77,11 +81,6 @@ class CarRepositoryTest {
         List<Engine> engines = engineRepository.findAll();
         for (Engine e : engines) {
             engineRepository.delete(e.getId());
-        }
-
-        List<Post> posts = postRepository.findAll();
-        for (Post p : posts) {
-            postRepository.delete(p.getId());
         }
     }
 }
