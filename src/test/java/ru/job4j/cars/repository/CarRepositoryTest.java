@@ -41,7 +41,8 @@ class CarRepositoryTest {
 
     @Test
     void create() {
-        Car car = new Car(0, "BMW", new Engine(0, "V8"));
+        Engine engine = engineRepository.create(new Engine(0, "V8"));
+        Car car = new Car(0, "BMW", engine);
         Car created = carRepository.create(car);
         assertThat(created).isEqualTo(Optional.of(car).get());
     }
