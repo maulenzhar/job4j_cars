@@ -71,6 +71,11 @@ class CarRepositoryTest {
     }
 
     private static void deleteAll() {
+        List<PriceHistory> priceHistories = priceHistoryRepository.findAll();
+        for (PriceHistory p : priceHistories) {
+            priceHistoryRepository.delete(p.getId());
+        }
+
         List<Post> posts = postRepository.findAll();
         for (Post p : posts) {
             postRepository.delete(p.getId());
@@ -79,11 +84,6 @@ class CarRepositoryTest {
         List<Car> cars = carRepository.findAll();
         for (Car c : cars) {
             carRepository.delete(c.getId());
-        }
-
-        List<PriceHistory> priceHistories = priceHistoryRepository.findAll();
-        for (PriceHistory p : priceHistories) {
-            priceHistoryRepository.delete(p.getId());
         }
 
         List<Engine> engines = engineRepository.findAll();
