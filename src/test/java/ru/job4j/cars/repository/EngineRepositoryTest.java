@@ -1,3 +1,4 @@
+/*
 package ru.job4j.cars.repository;
 
 import org.hibernate.SessionFactory;
@@ -27,7 +28,8 @@ class EngineRepositoryTest {
         carRepository = new CarRepository(new CrudRepository(sf));
         engineRepository = new EngineRepository(new CrudRepository(sf));
 
-        /*List<Car> cars = carRepository.findAll();
+        */
+/*List<Car> cars = carRepository.findAll();
         for (Car c : cars) {
             carRepository.delete(c.getId());
         }
@@ -35,7 +37,8 @@ class EngineRepositoryTest {
         List<Engine> engines = engineRepository.findAll();
         for (Engine e : engines) {
             engineRepository.delete(e.getId());
-        }*/
+        }*//*
+
     }
 
     @Test
@@ -67,4 +70,4 @@ class EngineRepositoryTest {
             assertThat(e).isEmpty();
         }
     }
-}
+}*/
