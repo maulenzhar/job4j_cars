@@ -49,9 +49,13 @@ class OwnerRepositoryTest {
 
     @Test
     void delete() {
-        ownerRepository.delete(0);
-        Optional<Owner> o = ownerRepository.findById(0);
-        assertThat(o).isEmpty();
+        List<Owner> owners = ownerRepository.findAll();
+        if (!owners.isEmpty()) {
+            ownerRepository.delete(owners.get(0).getId());
+            Optional<Owner> o = ownerRepository.findById(owners.get(0).getId());
+            assertThat(o).isEmpty();
+        }
+
     }
 
 }

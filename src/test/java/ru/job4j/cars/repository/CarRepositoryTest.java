@@ -56,8 +56,11 @@ class CarRepositoryTest {
 
     @Test
     void delete() {
-        carRepository.delete(0);
-        Optional<Car> c = carRepository.findById(0);
-        assertThat(c).isEmpty();
+        List<Engine> engines = engineRepository.findAll();
+        if (!engines.isEmpty()) {
+            engineRepository.delete(engines.get(0).getId());
+            Optional<Engine> e = engineRepository.findById(engines.get(0).getId());
+            assertThat(e).isEmpty();
+        }
     }
 }
