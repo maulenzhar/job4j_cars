@@ -1,11 +1,10 @@
 package ru.job4j.cars.repository;
 
+import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.jupiter.api.BeforeAll;
-
-import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cars.model.Car;
 import ru.job4j.cars.model.Engine;
@@ -13,18 +12,18 @@ import ru.job4j.cars.model.Engine;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
-class CarRepositoryTest {
+class EngineRepositoryTest {
     private static CarRepository carRepository;
     private static EngineRepository engineRepository;
-    private static SessionFactory sf;
 
     @BeforeAll
     public static void initRepository() {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
-        sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+        SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         carRepository = new CarRepository(new CrudRepository(sf));
         engineRepository = new EngineRepository(new CrudRepository(sf));
 
@@ -41,23 +40,21 @@ class CarRepositoryTest {
 
     @Test
     void create() {
-        engineRepository.create(new Engine(0, "V8"));
-        List<Engine> engine = engineRepository.findAll();
-        Car car = new Car(0, "BMW", engine.get(0));
-        Car created = carRepository.create(car);
-        assertThat(created).isEqualTo(Optional.of(car).get());
+        Engine engine = new Engine(0, "V8");
+        Engine result = engineRepository.create(engine);
+        assertThat(engine).isEqualTo(Optional.of(result).get());
     }
 
     @Test
     void findById() {
-        List<Car> c = carRepository.findAll();
-        assertThat(carRepository.findById(c.get(0).getId()).get()).isEqualTo(c.get(0));
+        List<Engine> engines = engineRepository.findAll();
+        assertThat(engineRepository.findById(engines.get(0).getId()).get()).isEqualTo(engines.get(0));
     }
 
     @Test
     void delete() {
-        carRepository.delete(0);
-        Optional<Car> c = carRepository.findById(0);
+        engineRepository.delete(0);
+        Optional<Engine> c = engineRepository.findById(0);
         assertThat(c).isEmpty();
     }
 }

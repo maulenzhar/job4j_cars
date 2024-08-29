@@ -18,7 +18,7 @@ public class CarRepository {
      * @return машина с id.
      */
     public Car create(Car car) {
-        crudRepository.run(session -> session.merge(car));
+        crudRepository.run(session -> session.save(car));
         return car;
     }
 

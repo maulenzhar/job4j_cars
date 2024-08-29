@@ -17,7 +17,7 @@ public class UserRepository {
      * @return пользователь с id.
      */
     public User create(User user) {
-        crudRepository.run(session -> session.persist(user));
+        crudRepository.run(session -> session.save(user));
         return user;
     }
 
@@ -82,5 +82,9 @@ public class UserRepository {
                 "from User where login = :fLogin", User.class,
                 Map.of("fLogin", login)
         );
+    }
+
+    public List<User> findAll() {
+        return crudRepository.query("from User order by id asc", User.class);
     }
 }

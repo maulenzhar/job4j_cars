@@ -1,8 +1,10 @@
 package ru.job4j.cars.repository;
 
 import lombok.AllArgsConstructor;
+import ru.job4j.cars.model.Engine;
 import ru.job4j.cars.model.Owner;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,7 +19,7 @@ public class OwnerRepository {
      * @return владелец с id.
      */
     public Owner create(Owner owner) {
-        crudRepository.run(session -> session.persist(owner));
+        crudRepository.run(session -> session.save(owner));
         return owner;
     }
 
@@ -49,5 +51,9 @@ public class OwnerRepository {
                 "from Owner where id = :fId", Owner.class,
                 Map.of("fId", ownerId)
         );
+    }
+
+    public List<Owner> findAll() {
+        return crudRepository.query("from Owner order by id asc", Owner.class);
     }
 }

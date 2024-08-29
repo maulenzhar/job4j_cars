@@ -7,7 +7,6 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class PostRepository {
@@ -20,7 +19,7 @@ public class PostRepository {
      * @return пост с id.
      */
     public Post create(Post post) {
-        crudRepository.run(session -> session.persist(post));
+        crudRepository.run(session -> session.save(post));
         return post;
     }
 
@@ -85,5 +84,9 @@ public class PostRepository {
                 Post.class,
                 Map.of("brand", brand)
         );
+    }
+
+    public List<Post> findAll() {
+        return crudRepository.query("from Post order by id asc", Post.class);
     }
 }

@@ -3,6 +3,7 @@ package ru.job4j.cars.repository;
 import lombok.AllArgsConstructor;
 import ru.job4j.cars.model.Photo;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public class PhotoRepository {
      * @return фото с id.
      */
     public Photo create(Photo photo) {
-        crudRepository.run(session -> session.persist(photo));
+        crudRepository.run(session -> session.save(photo));
         return photo;
     }
 
@@ -49,5 +50,9 @@ public class PhotoRepository {
                 "from Photo where id = :fId", Photo.class,
                 Map.of("fId", photoId)
         );
+    }
+
+    public List<Photo> findAll() {
+        return crudRepository.query("from Photo order by id asc", Photo.class);
     }
 }

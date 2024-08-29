@@ -20,18 +20,11 @@ create table owner
 
 create table history
 (
-    id      serial primary key,
+    id       serial primary key,
     start_at TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),
     end_at   TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),
     owner_id int not null references owner (id),
     car_id   int not null references car (id)
-);
-
-create table photo
-(
-    id           serial primary key,
-    name  varchar not null,
-    path      varchar not null
 );
 
 create table auto_post
@@ -39,10 +32,7 @@ create table auto_post
     id           serial primary key,
     description  varchar not null,
     created      TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),
-    auto_user_id int references auto_user (id),
-    car_id       int references car (id),
-    photo_id     int references photo (id)
+    car_id       int references car (id)
 );
-
 
 
