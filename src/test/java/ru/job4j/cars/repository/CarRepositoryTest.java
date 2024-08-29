@@ -41,6 +41,15 @@ class CarRepositoryTest {
 
     @Test
     void create() {
+        List<Car> cars = carRepository.findAll();
+        for (Car c : cars) {
+            carRepository.delete(c.getId());
+        }
+
+        List<Engine> engines = engineRepository.findAll();
+        for (Engine e : engines) {
+            engineRepository.delete(e.getId());
+        }
         engineRepository.create(new Engine(0, "V8"));
         List<Engine> engine = engineRepository.findAll();
         Car car = new Car(0, "BMW", engine.get(0));
@@ -49,17 +58,36 @@ class CarRepositoryTest {
     }
 
     @Test
-    void findById() {
+    void delete() {
+        List<Car> cars = carRepository.findAll();
+        for (Car c : cars) {
+            carRepository.delete(c.getId());
+        }
+
+        List<Engine> engines = engineRepository.findAll();
+        for (Engine e : engines) {
+            engineRepository.delete(e.getId());
+        }
         engineRepository.create(new Engine(0, "V8"));
         List<Engine> engine = engineRepository.findAll();
         Car car = new Car(0, "BMW", engine.get(0));
-        carRepository.create(car);
-        List<Car> c = carRepository.findAll();
-        assertThat(carRepository.findById(c.get(0).getId()).get()).isEqualTo(c.get(0));
+        Car created = carRepository.create(car);
+        carRepository.delete(car.getId());
+        Optional<Car> c = carRepository.findById(created.getId());
+        assertThat(c).isEmpty();
     }
 
     @Test
-    void delete() {
+    void findById() {
+        List<Car> cars = carRepository.findAll();
+        for (Car c : cars) {
+            carRepository.delete(c.getId());
+        }
+
+        List<Engine> engines = engineRepository.findAll();
+        for (Engine e : engines) {
+            engineRepository.delete(e.getId());
+        }
         engineRepository.create(new Engine(0, "V8"));
         List<Engine> engine = engineRepository.findAll();
         Car car = new Car(0, "BMW", engine.get(0));
