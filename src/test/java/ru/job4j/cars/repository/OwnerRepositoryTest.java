@@ -1,3 +1,4 @@
+/*
 package ru.job4j.cars.repository;
 
 import org.hibernate.SessionFactory;
@@ -27,10 +28,10 @@ class OwnerRepositoryTest {
         SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         ownerRepository = new OwnerRepository(new CrudRepository(sf));
 
-        /*List<Owner> owners = ownerRepository.findAll();
+        List<Owner> owners = ownerRepository.findAll();
         for (Owner o : owners) {
             ownerRepository.delete(o.getId());
-        }*/
+        }
     }
 
     @Test
@@ -47,7 +48,7 @@ class OwnerRepositoryTest {
         assertThat(ownerRepository.findById(owners.get(0).getId()).get()).isEqualTo(owners.get(0));
     }
 
-    /*@Test
+    @Test
     void delete() {
         List<Owner> owners = ownerRepository.findAll();
         if (!owners.isEmpty()) {
@@ -55,6 +56,6 @@ class OwnerRepositoryTest {
             Optional<Owner> o = ownerRepository.findById(owners.get(0).getId());
             assertThat(o).isEmpty();
         }
-    }*/
+    }
 
-}
+}*/

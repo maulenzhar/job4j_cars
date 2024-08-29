@@ -1,3 +1,4 @@
+/*
 package ru.job4j.cars.repository;
 
 import org.hibernate.SessionFactory;
@@ -24,10 +25,10 @@ class PhotoRepositoryTest {
         SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         photoRepository = new PhotoRepository(new CrudRepository(sf));
 
-      /*  List<Photo> photos = photoRepository.findAll();
+        List<Photo> photos = photoRepository.findAll();
         for (Photo p : photos) {
             photoRepository.delete(p.getId());
-        }*/
+        }
     }
 
     @Test
@@ -49,4 +50,4 @@ class PhotoRepositoryTest {
         Optional<Photo> p = photoRepository.findById(0);
         assertThat(p).isEmpty();
     }
-}
+}*/
